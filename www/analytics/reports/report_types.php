@@ -952,9 +952,11 @@ $signedRequest = $Init->generate();
 <script>
     var initOptions = <?php echo $signedRequest; ?>;
 
-    var lrnReports = LearnosityReports.init(initOptions, {
-            readyListener: onReportsReady
-        }
+    var eventsOptions = {
+        readyListener: onReportsReady,
+        metricsContext: ['initialContext']
+    };
+    var lrnReports = LearnosityReports.init(initOptions, eventsOptions
     );
 
     var showGroupReportData = function() {
@@ -1054,6 +1056,9 @@ $signedRequest = $Init->generate();
     };
 
     function onReportsReady() {
+
+        console.log(eventsOptions);
+
         var onClickFunction = function(data, target, modal) {
             if (modal) {
                 var sessionReports = ['sessions-summary', 'session-detail-by-question', 'sessions-summary-by-tag'];

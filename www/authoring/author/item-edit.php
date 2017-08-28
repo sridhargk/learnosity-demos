@@ -107,7 +107,8 @@ $signedRequest = $Init->generate();
 <script>
     var initOptions = <?php echo $signedRequest; ?>,
         eventOptions = {
-            readyListener: init
+            readyListener: init,
+            metricsContext: ['initialContext']
         },
         authorApp = LearnosityAuthor.init(initOptions, eventOptions);
 
@@ -123,6 +124,8 @@ $signedRequest = $Init->generate();
                 alert('Invalid value for Lexile and/or Flesch Kincaid');
             }
         });
+
+        console.log(eventOptions);
     }
 
     /*

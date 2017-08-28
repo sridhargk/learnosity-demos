@@ -502,11 +502,14 @@ $signedRequest = $Init->generate();
                 readyListener: init,
                 errorListener: function (event) {
                     console.log("error:" + event);
-                }
+                },
+                metricsContext: ['initialContext']
             },
             itemsApp = LearnosityItems.init(<?php echo $signedRequest; ?>, eventOptions);
 
         function init() {
+            console.log(eventOptions);
+
             var assessApp = itemsApp.assessApp();
 
             assessApp.on('item:load', function () {

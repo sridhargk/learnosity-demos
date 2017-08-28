@@ -47,7 +47,15 @@ include_once 'includes/header.php';
         widget_type: 'response'
     };
 
-    var qeApp = LearnosityQuestionEditor.init(initOptions);
+    var eventsOptions = {
+        metricsContext: ['initialContext'],
+        readyListener: init
+    };
+    var qeApp = LearnosityQuestionEditor.init(initOptions, eventsOptions);
+
+    function init() {
+        console.log(eventsOptions);
+    }
 
     document.querySelector('.lrn-question-button')
         .addEventListener('click', function () {

@@ -547,8 +547,17 @@ $signedRequest = $Init->generate();
 
 <script src="<?php echo $url_assess; ?>?inline"></script>
 <script>
-    var activity = <?php echo $signedRequest; ?>,
-        assessApp = LearnosityAssess.init(activity, 'learnosity_assess');
+    var activity = <?php echo $signedRequest; ?>;
+    var eventOptions = {
+        metricsContext: ['initialContext'],
+        readyListener: init
+
+    };
+    var assessApp = LearnosityAssess.init(activity, 'learnosity_assess', eventOptions);
+
+    function init () {
+        console.log(eventOptions);
+    }
 </script>
 
 <?php
